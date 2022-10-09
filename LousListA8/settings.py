@@ -32,7 +32,7 @@ DEBUG = 'DYNO' not in os.environ
 # Test deployment on heroku
 DEBUG = True
 
-ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
+ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
 
 # Application definition
 INSTALLED_APPS = [
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'bootstrap5',
     'django.contrib.sites', 
+    'django.contrib.sites.models', 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -165,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 4
+SITE_ID = 6
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
