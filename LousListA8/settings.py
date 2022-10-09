@@ -91,8 +91,8 @@ DATABASES = {
 }
 
 # Replace sqlite with postgres if deployed on heroku
-if 'HEROKU' in os.environ:
-    DATABASES['default'] = dj_database_url.config(ssl_require=True)
+# if 'HEROKU' in os.environ:
+#     DATABASES['default'] = dj_database_url.config(ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
