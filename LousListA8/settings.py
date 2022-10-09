@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 # Set debug mode to false if deployed on heroku
 DEBUG = 'DYNO' in os.environ
 
-ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
 
 # Application definition
 INSTALLED_APPS = [
