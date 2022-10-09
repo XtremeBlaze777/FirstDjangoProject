@@ -85,19 +85,12 @@ WSGI_APPLICATION = 'LousListA8.wsgi.application'
 DATABASES = {
     # grab credentials AFTER deployed on heroku
     'default': dj_database_url.config(ssl_require=True)
-    if 'HEROKU' in os.environ else {
-        # If deploying locally, use sqlite instead
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+                # If deploying locally, use sqlite instead
+                if 'HEROKU' in os.environ else {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# Using environment variables to mask credentials
-
-
-print(DATABASES['default']['DATABASE_URL'])
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
