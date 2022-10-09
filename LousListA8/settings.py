@@ -85,13 +85,14 @@ WSGI_APPLICATION = 'LousListA8.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'DATABASE_URL': os.environ['DATABASE_URL'],
 
         # TODO - will learn environment variables to mask credentials
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'USER': 'USER',
-        'PASSWORD': 'PASSWORD',
-        'HOST': 'HOST',
-        'PORT':  'PORT',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        # 'USER': 'USER',
+        # 'PASSWORD': 'PASSWORD',
+        # 'HOST': 'HOST',
+        # 'PORT':  'PORT',
     }
 }
 
@@ -142,8 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     if 'HEROKU' in os.environ:
-        import django_heroku
-        django_heroku.settings(locals())
+        import django_on_heroku
+        django_on_heroku.settings(locals())
 except ImportError:
     found = False
 
