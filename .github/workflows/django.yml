@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ "googleLoginDev" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "googleLoginDev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
