@@ -4,6 +4,9 @@
 <h1>A-08 Lou's List Login Page </h1>
 {% if user.is_authenticated %}
   <p>Welcome, You are logged in as {{ user.username }}</p>
+  <form action="./home">
+    <input type="submit" value="Go to Home Page" />
+  </form>
 {% else %}
   <a href="{% provider_login_url 'google' %}">Login With Google</a>
 {% endif %}
