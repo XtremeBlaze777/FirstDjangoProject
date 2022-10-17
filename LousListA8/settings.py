@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from distutils.debug import DEBUG
 import os
-from urllib import request
 import dj_database_url
 from pathlib import Path
-from django.shortcuts import get_current_site
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -164,7 +162,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = get_current_site(request)
+SITE_ID = 0
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
