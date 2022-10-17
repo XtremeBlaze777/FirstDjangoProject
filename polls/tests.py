@@ -18,6 +18,13 @@ class setUpTestCase(TestCase):
     def test_user_not_logged_in(self):
         response = self.client.get('/polls', follow=True)
         self.assertEqual(response.redirect_chain[0][0], "/polls/")
+    
+    def unauth_user_logged_in(self):
+        c = Client()
+        User.objects.create_user(username='stream', password='lg')
+        c.login(username='stream', password='lg')
+        response = self.client.get('/profiles', follow=True)
+        self.assertTrue(response.redirect_chain[0][0], "/polls/")
         
 #Google login test
 class googleLoginTestCase(TestCase):
