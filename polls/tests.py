@@ -29,3 +29,12 @@ class unauthLoginTestCase(TestCase):
         c.login(username='stream', password='lg')
         response = self.client.get('/profiles', follow=True)
         self.assertTrue(response.redirect_chain[0][0], "/polls/")
+
+#Unauthorized login 2
+class unauthLoginTestCaseTwo(TestCase):
+    def unauth_user_logged_in(self):
+        c = Client()
+        User.objects.create_user(username='stream', password='lg')
+        c.login(username='stream', password='lg')
+        response = self.client.get('/profiles', follow=True)
+        self.assertFalse(response.redirect_chain[0][0], "/services/")
