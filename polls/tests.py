@@ -30,7 +30,6 @@ class setUpTestCase(TestCase):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
-        k = User.subject('AAS')
         response = self.client.get('/polls', follow=True)
         self.assertTrue(response.redirect_chain[0][0], "/polls/")
         
@@ -64,6 +63,5 @@ class dropdownMenuTestCase(TestCase):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
-        k = User.subject('AAS')
         response = self.client.get('/polls', follow=True)
         self.assertFalse(response.redirect_chain[0][0], "/services/")
