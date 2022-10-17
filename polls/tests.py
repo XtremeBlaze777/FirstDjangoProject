@@ -15,6 +15,9 @@ class setUpTestCase(TestCase):
     def test_dummy_test_case(self):
         self.assertEqual(1, 1)
         
+    def test_dummy_test_casetwo(self):
+        self.assertEqual(1, 1)
+        
 #Google login test
 class googleLoginTestCase(TestCase):
     def test_user_not_logged_in(self):
