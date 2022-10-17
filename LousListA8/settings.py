@@ -32,7 +32,11 @@ DEBUG = 'DYNO' not in os.environ
 # Test deployment on heroku
 DEBUG = True
 
-ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
+PROD_HOST = ['louslist-a8.herokuapp.com']
+STAGING_HOSTS = ['staging-louslist-a8.herokuapp.com', 'lous-list-a8.herokuapp.com', 'project-a-08-test.herokuapp.com', 'firstprojectdjango.herokuapp.com']
+LOCAL_HOST = ['127.0.0.1', '0.0.0.0', 'localhost']
+
+ALLOWED_HOSTS = [*PROD_HOST, *STAGING_HOSTS, *LOCAL_HOST]
 
 # Application definition
 INSTALLED_APPS = [
