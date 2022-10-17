@@ -25,10 +25,10 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# Set debug mode to false if deployed on heroku
-DEBUG = 'DYNO' in os.environ
+# This is a staging branch
+Debug= 'DYNO' not in os.environ
 
-ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
+ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com', 'staging-louslist-a8.herokuapp.com', 'firstprojectdjango.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -85,17 +85,14 @@ WSGI_APPLICATION = 'LousListA8.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-
-        # TODO - will learn environment variables to mask credentials
         'NAME': BASE_DIR / 'db.sqlite3',
-        'USER': 'USER',
-        'PASSWORD': 'PASSWORD',
-        'HOST': 'HOST',
-        'PORT':  'PORT',
     }
 }
 
-
+# Replace sqlite with postgres if deployed on heroku
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(ssl_require=True, conn_max_age=600)
+    
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -142,7 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     if 'HEROKU' in os.environ:
-        import django_heroku
+        import django_on_heroku as django_heroku
         django_heroku.settings(locals())
 except ImportError:
     found = False
