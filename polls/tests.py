@@ -23,8 +23,15 @@ class setUpTestCase(TestCase):
         c = Client()
         User.objects.create_user(username='stream', password='lg')
         c.login(username='stream', password='lg')
-        response = self.client.get('/profiles', follow=True)
+        response = self.client.get('/polls', follow=True)
         self.assertTrue(response.redirect_chain[0][0], "/polls/")
+
+    def test_drop_down_course_selection(self):
+        c = Client()
+        User.objects.create_user(username='admin', password='admin')
+        c.login(username='admin', password='admin')
+        response = self.client.get('/polls', follow=True)
+        self.assertFalse(response.redirect_chain[0][0], "/polls/")
         
 #Google login test
 class googleLoginTestCase(TestCase):
