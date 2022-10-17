@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 # This is a staging branch
 DEBUG = True
 
-ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com'] #The last one is for testing purposes
+ALLOWED_HOSTS = ['louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com', 'https://staging-louslist-a8.herokuapp.com/']
 
 # Application definition
 INSTALLED_APPS = [
@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     if 'HEROKU' in os.environ:
-        import django_heroku
+        import django_on_heroku as django_heroku
         django_heroku.settings(locals())
 except ImportError:
     found = False
