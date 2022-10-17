@@ -143,8 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     if 'HEROKU' in os.environ:
-        import django_on_heroku
-        django_on_heroku.settings(locals())
+        import django_on_heroku as django_heroku
+        django_heroku.settings(locals())
 except ImportError:
     found = False
 
@@ -165,7 +165,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 4
+SITE_ID = 0
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
