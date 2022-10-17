@@ -31,7 +31,7 @@ class setUpTestCase(TestCase):
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
         response = self.client.get('/polls', follow=True)
-        self.assertFalse(response.redirect_chain[0][0], "/services/")
+        self.assertTrue(response.redirect_chain[0][0], "/polls/")
         
 #Google login test
 class googleLoginTestCase(TestCase):
