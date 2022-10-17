@@ -29,9 +29,6 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 # Set debug mode to false if deployed on heroku
 DEBUG = 'DYNO' not in os.environ
 
-# Test deployment on heroku
-DEBUG = True
-
 PROD_HOST = 'louslist-a8.herokuapp.com'
 STAGING_HOSTS = ['staging-louslist-a8.herokuapp.com', 'lous-list-a8.herokuapp.com', 'project-a-08-test.herokuapp.com', 'firstprojectdjango.herokuapp.com']
 LOCAL_HOST = ['127.0.0.1', '0.0.0.0', 'localhost']
@@ -92,8 +89,8 @@ WSGI_APPLICATION = 'LousListA8.wsgi.application'
 DATABASES = {
     # This will be replaced if we are deployed on heroku
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
