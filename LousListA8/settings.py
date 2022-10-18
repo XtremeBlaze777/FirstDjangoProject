@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-from distutils.debug import DEBUG
 import os
 import dj_database_url
+from distutils.debug import DEBUG
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,10 +26,14 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# This is a staging branch
-DEBUG = True
+# Set debug mode to false if deployed on heroku
+DEBUG = 'DYNO' not in os.environ
 
-ALLOWED_HOSTS = ['lous-list-a8.herokuapp.com', 'louslist-a8.herokuapp.com', '127.0.0.1', '0.0.0.0', 'localhost', 'project-a-08-test.herokuapp.com', 'staging-louslist-a8.herokuapp.com', 'firstprojectdjango.herokuapp.com']
+PROD_HOST = 'louslist-a8.herokuapp.com'
+STAGING_HOSTS = ['staging-louslist-a8.herokuapp.com', 'lous-list-a8.herokuapp.com', 'project-a-08-test.herokuapp.com', 'firstprojectdjango.herokuapp.com']
+LOCAL_HOST = ['127.0.0.1', '0.0.0.0', 'localhost']
+
+ALLOWED_HOSTS = [PROD_HOST, *STAGING_HOSTS, *LOCAL_HOST]
 
 # Application definition
 INSTALLED_APPS = [
@@ -41,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
     'bootstrap5',
-    'django.contrib.sites', 
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -80,10 +84,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LousListA8.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
+    # This will be replaced if we are deployed on heroku
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -93,7 +97,7 @@ DATABASES = {
 # Replace sqlite with postgres if deployed on heroku
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(ssl_require=True, conn_max_age=600)
-    
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
