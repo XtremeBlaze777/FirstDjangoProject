@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-08 Lou's List</title>
-</head>
-<body>
-    <select name="subject" id="subject">
-        <option value="">--Please choose a course subject--</option>
-        {% for i in response%}
-            currVal = str({{i.subject}})
-            <option value=currVal>{{i.subject}}</option>
-        {% endfor%}
-    </select>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center">
+	<form method="POST">
+		{% csrf_token %}
+		<select name="subject" id="subject">
+			<option selected="selected" disabled>Choose a course subject</option>
+			
+			{% for i in response%}
+				currVal = str({{i.subject}})
+				<option value = {{i.subject}} >{{i.subject}}</option>
+			{% endfor%}
+		</select>
+		<input type="submit" value="See Classes">
+	</form>
+</div>
+{% endblock %}
