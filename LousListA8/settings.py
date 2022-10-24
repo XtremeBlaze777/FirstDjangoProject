@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 
 # Set debug mode to false if deployed on heroku
 DEBUG = 'DYNO' not in os.environ
+DEBUG = 'False'
 
 PROD_HOST = 'louslist-a8.herokuapp.com'
 STAGING_HOSTS = ['staging-louslist-a8.herokuapp.com', 'lous-list-a8.herokuapp.com', 'project-a-08-test.herokuapp.com', 'firstprojectdjango.herokuapp.com']
