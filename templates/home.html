@@ -9,13 +9,14 @@
 	<form method="POST">
 		{% csrf_token %}
     	<select name="subject" id="subject">
-        	<option value="">--Please choose a course subject--</option>
+            <option selected="selected" disabled>Choose a course subject</option>
+        	
         	{% for i in response%}
             	currVal = str({{i.subject}})
-            	<option value=currVal>{{i.subject}}</option>
+            	<option value = {{i.subject}} >{{i.subject}}</option>
         	{% endfor%}
     	</select>
-        <button type="submit">See Classes</button>
+        <input type="submit" value="See Classes">
     </form>
 </body>
 </html>
