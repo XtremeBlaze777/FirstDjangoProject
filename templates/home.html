@@ -13,5 +13,10 @@
             <option value=currVal>{{i.subject}}</option>
         {% endfor%}
     </select>
+    <form method="POST">
+         {% csrf_token %}
+         <input type="text" name="textfield">
+         <button type="submit">Submit Your Thought!</button>
+    </form>
 </body>
 </html>
