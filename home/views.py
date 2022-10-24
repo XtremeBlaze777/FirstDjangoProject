@@ -7,4 +7,8 @@ def index(request):
 
 def home(request):
     response = requests.get('http://luthers-list.herokuapp.com/api/deptlist?format=json').json()
+    if request.method == 'POST':
+        subject = request.POST.get('subject', None)
+        response = requests.get('http://http://luthers-list.herokuapp.com/api/dept/' + subject + '/?format=json').json()
+        return render(request, 'classes.html',{'response':response})
     return render(request, 'home.html',{'response':response})
