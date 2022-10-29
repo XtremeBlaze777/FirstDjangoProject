@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
   <title>A-08 Lou's List</title>
+  <meta http-equiv="refresh" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -66,8 +67,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li>{% load static %} <img src="{% static "images/uva_logo.png" %}" alt="home" height="50px"  /></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
@@ -85,24 +86,23 @@
         <h1>A-8 Lou's List</h1>
     </div>
   <div class="row content">
-   <div class="col-sm-2 sidenav">
+   <!--<div class="col-sm-2 sidenav">
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
-    </div> 
-    <div class="col-sm-8 vertical-center"> 
-       <h4>Please select a course subject!</h4>
+    </div>-->
+    <div class="col-sm"> 
        {% block content %}
             
        {% endblock %}
     </div>
-   <div class="col-sm-2 sidenav">
+   <!--<div class="col-sm-2 sidenav">
       <div class="well">
         <p>ADS</p>
       </div>
       <div class="well">
         <p>ADS</p>
-      </div>
+      </div>-->
     </div>
   </div>
 </div>

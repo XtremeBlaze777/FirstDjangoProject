@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 	
     {% block content %}
-
+    <form action="./">
+        <input type="submit" value="Go back to class search" class="btn btn-link" />
+    </form>
     {% for x in response%}
         <p>{{x.description}}</p>
     {% endfor %}
