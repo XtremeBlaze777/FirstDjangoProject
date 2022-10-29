@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.test import Client
 from django.contrib import auth
+import requests
 
 #setup test cases
 class setUpTestCase(TestCase):
@@ -62,3 +63,7 @@ class classesByDeptTestCase(TestCase):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
+        subjectData = requests.get('http://luthers-list.herokuapp.com/api/deptlist?format=json').json()
+        for subject in subjectData:
+            response = requests.get('http://luthers-list.herokuapp.com/api/dept/' + subject['subject'] + '/?format=json').json()
+            self.assertFalse(len(response) == 0)
