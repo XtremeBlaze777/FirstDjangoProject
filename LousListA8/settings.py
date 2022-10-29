@@ -7,8 +7,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-from pickle import TRUE
 import dj_database_url
+from pickle import TRUE
 from distutils.debug import DEBUG
 from pathlib import Path
 
@@ -24,9 +24,8 @@ SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-ON_HEROKU = 'DYNO' not in os.environ
-# Set debug mode to true for staging environment
-DEBUG = True
+# Set debug mode to false if deployed on heroku
+DEBUG = 'DYNO' not in os.environ
 
 PROD_HOST = 'louslist-a8.herokuapp.com'
 STAGING_HOSTS = ['staging-louslist-a8.herokuapp.com', 'lous-list-a8.herokuapp.com', 'project-a-08-test.herokuapp.com', 'firstprojectdjango.herokuapp.com']
@@ -97,6 +96,7 @@ DATABASES = {
 # Replace sqlite with postgres if deployed on heroku
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(ssl_require=True, conn_max_age=600)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -165,7 +165,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 5
+SITE_ID = 0
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
