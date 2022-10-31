@@ -11,3 +11,8 @@ class CourseDescription(models.Model):
 
     def __str__(self):
         return self.course_title
+
+#class Subject(models.Model):
+    #courses = ArrayField(models.CharField(max_length=100), size=200)
+    
+    

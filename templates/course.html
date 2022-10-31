@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+	
+    {% block content %}
+    {{courseName}}
+
+    {% for x,y,z in Info%}
+
+    	<p> Instructor: {{x}} &nbsp&nbsp&nbsp Spots Available: {{y}} &nbsp&nbsp&nbsp Day: {{z}} </p> 
+        
+    {% endfor %}
+
+
+	{% endblock content %}
