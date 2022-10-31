@@ -4,3 +4,5 @@ dj_database_url
 django-bootstrap-v5
 django-allauth
 django-on-heroku
+numpy
+pandas
