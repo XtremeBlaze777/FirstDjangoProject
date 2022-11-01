@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+class Department(models.Model):
+    deptJson = models.JSONField(default=dict)
+
 class CourseDescription(models.Model):
     instructor_name = models.CharField(max_length = 150)
     instructor_email = models.EmailField(max_length=254)
