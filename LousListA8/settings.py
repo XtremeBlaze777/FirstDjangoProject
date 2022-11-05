@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'bootstrap5',
     'django.contrib.sites',
-    'rest_framework',
     'home',
     'allauth',
     'allauth.account',
@@ -167,7 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 1
+SITE_ID = 5
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
