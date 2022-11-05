@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 	
     {% block content %}
-    {{courseName}}
+    {% for course in object_list %}
+     <font size="+2">{{course.subject}}: {{course.catalog_number}}</font> <br>
+     <font size="+1">{{course.description}} </font> <br>
+     {{course.units}} Credits
+     <br>
+     <br>
 
-    {% for x,y,z in Info%}
+ <div align="left">
+    <div class="btn-group-vertical">
+	<form method="POST">
 
-    	<p> Instructor: {{x}} &nbsp&nbsp&nbsp Spots Available: {{y}} &nbsp&nbsp&nbsp Day: {{z}} </p> 
-        
+
+    		{% csrf_token %}
+    <div class="col-md-12 mb-1">
+            
+    <a href="{% url 'home:course_description' pk=course.id %}">See class</a> <nobr>
+             <p style="display:inline"> Component: {{course.component}} &nbsp&nbsp&nbsp Instructor: {{course.instructor_name}} &nbsp&nbsp&nbsp Spots Available: {{course.enrollment_available}} &nbsp&nbsp&nbsp Day: {{course.days}} </p>            
+    </div>  
+    </form>
+
+    </div>
+    </div>
+    
     {% endfor %}
-
-
 	{% endblock content %}

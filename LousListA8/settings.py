@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 import dj_database_url
-from pickle import TRUE
 from distutils.debug import DEBUG
 from pathlib import Path
 
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'bootstrap5',
     'django.contrib.sites',
+    'rest_framework',
     'home',
     'allauth',
     'allauth.account',
@@ -96,7 +96,6 @@ DATABASES = {
 # Replace sqlite with postgres if deployed on heroku
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(ssl_require=True, conn_max_age=600)
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -131,8 +130,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+if(DEBUG == False):
+    STATIC_ROOT = os.path.join(BASE_DIR, 'home/static')
+else:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'home/static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
@@ -165,7 +167,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 0
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

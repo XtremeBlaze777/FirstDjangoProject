@@ -2,18 +2,9 @@
 
 {% block content %}
 <div class="center">
-	<h4>Please select a course subject!</h4>
-	<form method="POST">
-		{% csrf_token %}
-		<select name="subject" id="subject">
-			<option selected="selected" disabled>Choose a course subject</option>
-			
-			{% for i in response%}
-				currVal = str({{i.subject}})
-				<option value = {{i.subject}} >{{i.subject}}</option>
-			{% endfor%}
-		</select>
-		<input type="submit" value="See Classes">
+	<h4>Please enter a course subject!</h4>
+	<form action="{% url 'home:search_results' %}" method="get">
+		<input name="q" type="text" placeholder="Enter the Course Subject">
 	</form>
 </div>
 {% endblock %}
