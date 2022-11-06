@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+	
+    {% block content %}
+     <font size="+2">{{courseName}} Section: {{sectionNum}} </font>
+
+ <div align="left">
+    <div class="btn-group-vertical">
+	<form method="POST">
+
+    {{Info}}
+    <p> Instructor Name: {{name}} <br> 
+    Instructor Email: {{email}} <br>
+    Course Number: {{courseNum}} <br>
+    Wait List Spots Taken: {{waitList}} <br>
+    Wait List Spots Capacity: {{waitListCap}} <br>
+    Course capacity: {{capacity}} <br>
+    Course Slots Taken: {{spotsTaken}} <br>
+    Course Slots Available: {{spotsOpen}} <br>    
+    Meeting Day(s): {{day}} <br>
+    Start Time: {{startTime}} <br>
+    End Time: {{endTime}} <br>
+    Location: {{location}} <br> 
+
+         
+    </div>  
+
+    </form>
+    </div>
+    </div>
+
+	{% endblock content %}
