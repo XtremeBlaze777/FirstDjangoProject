@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models import Q
 
 def index(request):
     search_terms = ['admin']
@@ -11,12 +12,15 @@ def index(request):
     return render(request, 'friends.html', html_input)
 
 class SearchResultsView(ListView):
-    model = settings.AUTH_USER_MODEL
+    model = User
     template_name = "user_search.html"
 
     def get_queryset(self):  
         query = self.request.GET.get("q")
-        object_list = Course.objects.filter(
-            Q(subject__icontains=query)
+        object_list = self.model.objects.filter(
+            Q(username__icontains=query)
         )
-        return object_list
+        if len(object_list) > 0:
+            return object_list
+        else:
+            return []

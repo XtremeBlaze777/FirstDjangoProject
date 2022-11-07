@@ -45,3 +45,4 @@ URL: https://jinja.palletsprojects.com/en/3.1.x/
     - https://stackoverflow.com/questions/26276397/django-1-7-upgrade-error-appregistrynotready-apps-arent-loaded-yet
     - https://stackoverflow.com/questions/4847469/use-django-from-python-manage-py-shell-to-python-script
     - https://stackoverflow.com/questions/25386119/whats-the-difference-between-a-onetoone-manytomany-and-a-foreignkey-field-in-d
+    - https://stackoverflow.com/questions/902034/how-can-i-check-the-size-of-a-collection-within-a-django-template

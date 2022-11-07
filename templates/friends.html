@@ -3,7 +3,12 @@
 {% block content %}
 	<div class="center">
 		{% if request_method == 'GET' %}
-			<h4>Search for your friends here!</h4>
+			<div class="center">
+				<h4>Search for your friends here!</h4>
+				<form action="{% url 'friends:search_results' %}" method="get">
+					<input name="q" type="text" placeholder="enter a username">
+				</form>
+			</div>
 		{% elif request_method == 'POST' %}
 			<ul>
 				{% for result in search_terms %}

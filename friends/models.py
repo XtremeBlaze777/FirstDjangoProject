@@ -1,13 +1,14 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 
 class FriendList(models.Model):
     # OneToOne = One FriendList per user and vice-versa; on_delete = delete friend list if user is deleted
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
 
     # ManyToMany = many users can be on the same FriendList and many FriendLists can have the same user
     # blank = user can have no friends
-    friends = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='friends')
+    friends = models.ManyToManyField(User, blank=True, related_name='friends')
 
     # Python refers to toString as __str__
     def __str__(self):
@@ -34,8 +35,8 @@ class FriendRequest(models.Model):
         A sender can send out many requests
         A request is unique to one sender
     '''
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender')
-    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
 
     is_pending = models.BooleanField(default=True, blank=True, null=False)
     time_stamp = models.DateTimeField(auto_now_add=True)
