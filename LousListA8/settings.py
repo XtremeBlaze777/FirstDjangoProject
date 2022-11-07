@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'bootstrap5',
     'django.contrib.sites',
     'home',
+    'friends',
+    'cart',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

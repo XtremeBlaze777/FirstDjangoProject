@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="center">
+		{% if request_method == 'GET' %}
+			<h4>Search for your friends here!</h4>
+		{% elif request_method == 'POST' %}
+			<ul>
+				{% for result in search_terms %}
+					<li><option value = {{result}}>{{result}}</option></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<h4>Stop messing with our website lol</h4>
+		{% endif %}
+	</div>
+{% endblock %}
