@@ -2,9 +2,11 @@
 
 {% block content %}
 <div class="center">
-	<h4>Please enter a course subject!</h4>
+	<h4>Please enter your course filters!</h4>
 	<form action="{% url 'cart:search_results' %}" method="get">
-		<input name="q" type="text" placeholder="Enter the Course Subject">
+		<input name="subject" type="text" placeholder="Enter the Course Subject"> <br>
+		<input name="instructor" type="text" placeholder="Enter the Instructor Name"> <br>
+		<input type="submit" value="See classes!">
 	</form>
 </div>
 {% endblock %}

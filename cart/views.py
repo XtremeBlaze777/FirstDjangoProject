@@ -86,9 +86,10 @@ class SearchResultsView(ListView):
     template_name = "course.html"
 
     def get_queryset(self):  
-        query = self.request.GET.get("q")
+        subject_query = self.request.GET.get("subject")
+        instructor_query = self.request.GET.get("instructor")
         object_list = Course.objects.filter(
-            Q(subject__icontains=query)
+            Q(subject__icontains=subject_query), Q(instructor_name__icontains=instructor_query)
         )
         return object_list
 
