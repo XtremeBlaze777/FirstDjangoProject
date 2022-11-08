@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 	
     {% block content %}
-     <font size="+2">{{courseName}} Section: {{sectionNum}} </font>
+     <font size="+2">{{object.description}} Section: {{object.course_section}} </font>
 
  <div align="left">
     <div class="btn-group-vertical">
 	<form method="POST">
 
     {{Info}}
-    <p> Instructor Name: {{name}} <br> 
-    Instructor Email: {{email}} <br>
-    Course Number: {{courseNum}} <br>
-    Wait List Spots Taken: {{waitList}} <br>
-    Wait List Spots Capacity: {{waitListCap}} <br>
-    Course capacity: {{capacity}} <br>
-    Course Slots Taken: {{spotsTaken}} <br>
-    Course Slots Available: {{spotsOpen}} <br>    
-    Meeting Day(s): {{day}} <br>
-    Start Time: {{startTime}} <br>
-    End Time: {{endTime}} <br>
-    Location: {{location}} <br> 
-
-         
+    <p> Instructor Name: {{object.instructor_name}} <br> 
+    Instructor Email: {{object.instructor_email}} <br>
+    Course Number: {{object.course_number}} <br>
+    Wait List Spots Taken: {{object.wait_list}} <br>
+    Wait List Spots Capacity: {{object.wait_cap}} <br>
+    Course capacity: {{object.class_capacity}} <br>
+    Course Slots Taken: {{object.enrollment_total}} <br>
+    Course Slots Available: {{object.enrollment_available}} <br>    
+    Meeting Day(s): {{object.days}} <br>
+    Start Time: {{object.start_time}} <br>
+    End Time: {{object.end_time}} <br>
+    Location: {{object.facility_description}} <br> 
+    </p>
+    <a href="{{object.get_add_to_cart_url}}" class="btn btn-primary btn-md my-0 p" >Add to cart
+    </a>
     </div>  
 
     </form>
