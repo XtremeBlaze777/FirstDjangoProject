@@ -4,7 +4,7 @@
 	<div class="center">
 		{% if request_method == 'GET' %}
 			<div class="center">
-				<h4>Search for your friends here!</h4>
+				<h4>Discover who is using our platform:</h4>
 				<form action="{% url 'friends:search_results' %}" method="get">
 					<input name="q" type="text" placeholder="enter a username">
 				</form>
