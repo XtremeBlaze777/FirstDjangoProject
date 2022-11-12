@@ -3,4 +3,4 @@ from .views import *
 
 class user(User):
     def make_friend_request(self):
-        
+        pass

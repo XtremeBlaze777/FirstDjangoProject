@@ -11,7 +11,6 @@ import pandas as pd
 import requests
 from .models import *
 
-
 # Create your views here.
 
 class CartView(LoginRequiredMixin, View):

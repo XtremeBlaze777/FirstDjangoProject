@@ -5,8 +5,8 @@ from django.utils import timezone
 from django.dispatch import receiver
 from django.shortcuts import reverse
 
-
 # Create your models here.
+
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     courses = models.ManyToManyField('CartItem')
@@ -14,8 +14,6 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.user.username) 
-
-
 
 class Department(models.Model):
     deptJson = models.JSONField(default=dict)

@@ -34,22 +34,23 @@ ALLOWED_HOSTS = [PROD_HOST, *STAGING_HOSTS, *LOCAL_HOST]
 
 # Application definition
 INSTALLED_APPS = [
+    'home',
+    'cart',
+    'friends', # Will be replaced by 'friendship' for Sprint 6
+    # 'friendship', # I am going to switch over to this for Sprint 6
+    'bootstrap5',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls.apps.PollsConfig',
-    'bootstrap5',
     'django.contrib.sites',
-    'home',
-    'friends',
-    'cart',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +98,7 @@ DATABASES = {
 # Replace sqlite with postgres if deployed on heroku
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(ssl_require=True, conn_max_age=600)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -146,10 +148,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
     if 'HEROKU' in os.environ:
-        import django_on_heroku as django_heroku
-        django_heroku.settings(locals())
+        from django_on_heroku import settings
+        settings(locals())
 except ImportError:
-    found = False
+    print("Couldn't import django_on_heroku...")
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
