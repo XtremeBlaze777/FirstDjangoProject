@@ -5,12 +5,9 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .models import *
 
+@login_required()
 def index(request):
-    curUser = None
-    try:
-        curUser = User.objects.filter(username=request.user)[0]
-    except IndexError:
-        pass
+    curUser = User.objects.get(username=request.user)
 
     context = {
         'request_method' : request.method,
@@ -69,12 +66,9 @@ def index(request):
 
     return render(request, 'friends.html', context)
 
+@login_required
 def SearchResults(request):
-    curUser = None
-    try:
-        curUser = User.objects.filter(username=request.user)[0]
-    except IndexError:
-        pass
+    curUser = User.objects.get(username=request.user)
 
     object_list = list(User.objects.all())
     object_list.remove(curUser)
