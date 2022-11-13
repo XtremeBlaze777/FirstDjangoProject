@@ -7,9 +7,38 @@
 			<p style="color:blue;">{{ top_text }}</p>
 		{% endif %}
 
-		<h4>Discover who is using our platform:</h4>
+		<h1>Discover who is using our platform:</h1>
 		<form action="{% url 'friends:search_results' %}" method="get">
 			<input name="q" type="text" placeholder="enter a username">
 		</form>
+		
+	</div>
+
+	<br>
+	<br>
+
+	<div class="center">
+		<h2>Your friends:</h2>
+		{% for user in friends %}
+			<font size="+1">{{user.username}}</font> <br>
+			<font >{{user.email}} </font> <br>
+			<br>
+		{% empty %}
+			<font size="+2">It's time to reach out to people!</font>
+		{% endfor %}
+	</div>
+
+	<br>
+	<br>
+
+	<div class="center">
+		<h2>Pending requests:</h2>
+		{% for user in sent %}
+			<font size="+1">{{user.username}}</font> <br>
+			<font >{{user.email}} </font> <br>
+			<br>
+		{% empty %}
+			<font size="+2">You have no pending requests...</font>
+		{% endfor %}
 	</div>
 {% endblock %}

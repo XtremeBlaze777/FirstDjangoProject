@@ -5,14 +5,35 @@ from django.db.models import Q
 from .models import *
 
 def index(request):
+    curUser = User.objects.filter(username=request.user)[0]
+    request_list = FriendRequest.objects.filter(receiver=curUser)
+    received_list = []
+    for req in request_list:
+        received_list.append(req.sender)
+
+    request_list = FriendRequest.objects.filter(sender=curUser)
+    sender_list = []
+    for req in request_list:
+        sender_list.append(req.receiver)
+
     context = {
         'request_method' : request.method,
         'top_text' : "",
+        'received' : received_list,
+        'sent' : sender_list,
+        'friends' : []
     }
+
+    try:
+        context['friends'] = FriendList.objects.filter(user=curUser)[0].friends
+    except:
+        pass
+
     if request.method == "POST":
         receiver = User.objects.filter(username=request.POST.get("receiver", ""))[0]
-        comrades = FriendRequest(sender=request.user, receiver=receiver)
+        comrades = FriendRequest.objects.create(sender=curUser, receiver=receiver)
         context['top_text'] = str(comrades)
+
     return render(request, 'friends.html', context)
 
 class SearchResultsView(ListView):
@@ -27,9 +48,21 @@ class SearchResultsView(ListView):
         if len(object_list) == 0:
             return []
         
-        # Exclude anyone who is already a friend
-        friend_list = FriendList.objects.filter(user=self.request.user)
-        for user in object_list:
-            if user in friend_list:
-                object_list.remove(user)
+        # # Exclude anyone who is already a friend
+        # friend_list = FriendList.objects.filter(user=self.curUser)
+        # for list in friend_list:
+        #     try:
+        #         object_list.exclude(list.user)
+        #     except:
+        #         pass
+
+        # # Exclude anyone who has been requested
+        # pend_list = FriendRequest.objects.filter(sender=self.curUser)
+        # for request in pend_list:
+        #     try:
+        #         object_list.exclude(request.sender)
+        #         object_list.exclude(request.receiver)
+        #     except:
+        #         pass
+
         return object_list
