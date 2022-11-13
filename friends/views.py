@@ -70,32 +70,46 @@ def index(request):
     return render(request, 'friends.html', context)
 
 def SearchResults(request):
+    curUser = None
+    try:
+        curUser = User.objects.filter(username=request.user)[0]
+    except IndexError:
+        pass
+
     object_list = list(User.objects.all())
-        
+    object_list.remove(curUser)
+
     # Exclude anyone who is already a friend
-    friend_list = FriendList.objects.filter(user=request.user)
-    for fl in friend_list:
-        try:
-            object_list.remove(fl.user)
-        except:
-            pass
+    list_of_friend_list = FriendList.objects.filter(user=curUser)
+    for fl in list_of_friend_list:
+        for f in fl.friends.all():
+            try:
+                object_list.remove(f)
+            except ValueError:
+                pass
 
     # Exclude anyone who has been requested
-    pend_list = FriendRequest.objects.filter(sender=request.user, is_pending=True)
+    pend_list = FriendRequest.objects.filter(sender=curUser, is_pending=True)
     for req in pend_list:
         try:
             object_list.remove(req.sender)
+        except ValueError:
+            pass
+        try:
             object_list.remove(req.receiver)
-        except:
+        except ValueError:
             pass
 
     # Exclude anyone who has requested
-    pend_list = FriendRequest.objects.filter(receiver=request.user, is_pending=True)
+    pend_list = FriendRequest.objects.filter(receiver=curUser, is_pending=True)
     for req in pend_list:
         try:
             object_list.remove(req.sender)
+        except ValueError:
+            pass
+        try:
             object_list.remove(req.receiver)
-        except:
+        except ValueError:
             pass
 
     return render(request, 'user_search.html', { 'object_list' : object_list })
