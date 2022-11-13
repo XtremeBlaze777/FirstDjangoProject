@@ -2,21 +2,14 @@
 
 {% block content %}
 	<div class="center">
-		{% if request_method == 'GET' %}
-			<div class="center">
-				<h4>Discover who is using our platform:</h4>
-				<form action="{% url 'friends:search_results' %}" method="get">
-					<input name="q" type="text" placeholder="enter a username">
-				</form>
-			</div>
-		{% elif request_method == 'POST' %}
-			<ul>
-				{% for result in search_terms %}
-					<li><option value = {{result}}>{{result}}</option></li>
-				{% endfor %}
-			</ul>
-		{% else %}
-			<h4>Stop messing with our website lol</h4>
+
+		{% if request_method == 'POST' %}
+			<p style="color:blue;">{{ top_text }}</p>
 		{% endif %}
+
+		<h4>Discover who is using our platform:</h4>
+		<form action="{% url 'friends:search_results' %}" method="get">
+			<input name="q" type="text" placeholder="enter a username">
+		</form>
 	</div>
 {% endblock %}

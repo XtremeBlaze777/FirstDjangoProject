@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
-	
+
 {% block content %}
     {% for user in object_list %}
         <font size="+2">{{user.username}}: {{user.first_name}} {{user.last_name}}</font> <br>
         <font size="+1">{{user.email}} </font> <br>
+
+        <form action="{% url 'friends:friendsHome' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Add as Friend" />
+            <input type="hidden" name="receiver" value={{user}} />
+        </form><br>
+
         <br>
         <br>
     {% empty %}

@@ -6,8 +6,8 @@ class FriendList(models.Model):
     # OneToOne = One FriendList per user and vice-versa; on_delete = delete friend list if user is deleted
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
 
-    # ManyToMany = many users can be on the same FriendList and many FriendLists can have the same user
-    # blank = user can have no friends
+    ''' ManyToMany = many users can be on the same FriendList and many FriendLists can have the same user
+        blank = user can have no friends '''
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
 
     # Python refers to toString as __str__
@@ -42,7 +42,7 @@ class FriendRequest(models.Model):
     time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return (self.sender.username + ' wants to be friends with ' + self.receiver.username)
+        return ('Sent a friend request to ' + self.receiver.username)
 
     def accept_request(self):
         sender_FL = FriendList.objects.get(user=self.sender)
@@ -50,12 +50,12 @@ class FriendRequest(models.Model):
         if receiver_FL and sender_FL:
             receiver_FL.add_friend(self.sender)
             sender_FL.add_friend(self.receiver)
-            self.is_active = False
+            self.is_pending = False
 
     # This is from receiver's perspective
     def reject_request(self):
-        self.is_active = False
+        self.is_pending = False
 
     # This is from sender's perspective
     def cancel_request(self):
-        self.is_active = False
+        self.is_pending = False

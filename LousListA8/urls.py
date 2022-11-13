@@ -23,12 +23,12 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('', include('home.urls')),
     path('', include('cart.urls')),
-    path('friends/', include('friends.urls')),
+    # path('', include('friendship.urls')),
+    path('friend/', include('friends.urls')),
     path('about/', TemplateView.as_view(template_name="about.html")),
     path('admin/', admin.site.urls),
     path('login/', TemplateView.as_view(template_name="login.html")),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
 ]
-
 urlpatterns += staticfiles_urlpatterns()
