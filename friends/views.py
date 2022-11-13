@@ -44,14 +44,14 @@ def index(request):
 
         elif src == "remove":
             myList = FriendList.objects.get(user=curUser)
-            myList.remove_friend(traitor = receiver)
+            myList.remove_friend(traitor=receiver)
             myList.save()
             context['top_text'] = "Removed " + str(receiver) + " as a friend..."
 
     try:
         context['friends'] = list(FriendList.objects.filter(user=curUser)[0].friends.all())
-    except IndexError: # This means the user isn't logged in
-        return render(request, 'friends.html', context)
+    except IndexError:
+        pass
 
     request_list = FriendRequest.objects.filter(receiver=curUser)
     received_list = []
@@ -69,33 +69,33 @@ def index(request):
 
     return render(request, 'friends.html', context)
 
-class SearchResultsView(ListView):
-    model = User
-    template_name = "user_search.html"
-
-    def get_queryset(self):  
-        query = self.request.GET.get("q")
-        object_list = self.model.objects.filter(
-            Q(username__icontains=query)
-        )
-        if len(object_list) == 0:
-            return []
+def SearchResults(request):
+    object_list = list(User.objects.all())
         
-        # # Exclude anyone who is already a friend
-        # friend_list = FriendList.objects.filter(user=self.curUser)
-        # for list in friend_list:
-        #     try:
-        #         object_list.exclude(list.user)
-        #     except:
-        #         pass
+    # Exclude anyone who is already a friend
+    friend_list = FriendList.objects.filter(user=request.user)
+    for fl in friend_list:
+        try:
+            object_list.remove(fl.user)
+        except:
+            pass
 
-        # # Exclude anyone who has been requested
-        # pend_list = FriendRequest.objects.filter(sender=self.curUser)
-        # for request in pend_list:
-        #     try:
-        #         object_list.exclude(request.sender)
-        #         object_list.exclude(request.receiver)
-        #     except:
-        #         pass
+    # Exclude anyone who has been requested
+    pend_list = FriendRequest.objects.filter(sender=request.user, is_pending=True)
+    for req in pend_list:
+        try:
+            object_list.remove(req.sender)
+            object_list.remove(req.receiver)
+        except:
+            pass
 
-        return object_list
+    # Exclude anyone who has requested
+    pend_list = FriendRequest.objects.filter(receiver=request.user, is_pending=True)
+    for req in pend_list:
+        try:
+            object_list.remove(req.sender)
+            object_list.remove(req.receiver)
+        except:
+            pass
+
+    return render(request, 'user_search.html', { 'object_list' : object_list })

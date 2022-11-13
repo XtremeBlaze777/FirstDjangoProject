@@ -5,5 +5,5 @@ app_name = 'friends'
 
 urlpatterns = [
     path('', views.index, name='friendsHome'),
-    path('search/', views.SearchResultsView.as_view(), name='search_results')
+    path('search/', views.SearchResults, name='search_results')
 ]
