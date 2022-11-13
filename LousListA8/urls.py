@@ -30,5 +30,4 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
 ]
-
 urlpatterns += staticfiles_urlpatterns()

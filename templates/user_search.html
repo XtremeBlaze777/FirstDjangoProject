@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
-	
+
 {% block content %}
     {% for user in object_list %}
-        <font size="+2">{{user.username}}: {{user.first_name}} {{user.last_name}}</font> <br>
-        <font size="+1">{{user.email}} </font> <br>
+        <font size="+1">{{user.username}}</font> <br>
+        <font >{{user.email}} </font> <br>
+        <form action="{% url 'friends:friendsHome' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Send friend request" />
+            <input type="hidden" name="src" value="user_search.html" />
+            <input type="hidden" name="receiver" value={{user}} />
+        </form>
         <br>
-        <br>
-    {% empty %}
-        <font size="+2">Your search results did not match any user!</font> <br>
-    {% endfor %}
+
+        {% empty %}
+            <font size="+2">Your search results did not match any user!</font> <br>
+            <font size="+1">(or you've already friended everyone on this list...)</font> <br>
+        {% endfor %}
 {% endblock %}
