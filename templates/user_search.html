@@ -6,7 +6,8 @@
         <font >{{user.email}} </font> <br>
         <form action="{% url 'friends:friendsHome' %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="Add as Friend" />
+            <input type="submit" value="Send friend request" />
+            <input type="hidden" name="src" value="user_search.html" />
             <input type="hidden" name="receiver" value={{user}} />
         </form>
         <br>
