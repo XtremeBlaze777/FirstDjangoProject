@@ -100,7 +100,7 @@ def create_schedule(request):
         
         print("CREATED SCHEDULE: ")
         messages.info(request, "Schedule created")
-        return redirect("schedule:schedule-summary")
+        return redirect("schedule:schedule_view")
     else:
         print("NO COURSES TO SCHEDULE")
         messages.info(request, "Cannot create schedule without courses")
