@@ -17,7 +17,7 @@
         <div class= "container">
             <div class="table-responsive text-nowrap">
         <h3>
-            <strong>Your Classes</strong>
+            <strong>Your Cart</strong>
         </h3>
         <table class="table">
             <thead>
@@ -26,26 +26,26 @@
                 <th scope="col">Item Name</th>
                 <th scope="col">Units</th>
                 <th scope="col">Instructor</th>
-                <th scope="col"></th>
+                <th scope="col">Remove</th>
             </tr>
             </thead>
             <tbody>
             {% for cart_item in object.courses.all %}
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <th><a href="{% url 'cart:course_description' pk=cart_item.course.id %}">{{cart_item.course.subject}}: {{cart_item.course.catalog_number}}</a></th>
-                <th>{{cart_item.course.units}}</th>
-                <th><a href="mailto:{{cart_item.course.instructor_email}}">{{cart_item.course.instructor_name}}</a></th>
-                <th>
-                    <a href="{{cart_item.course.get_remove_from_cart_url}}" class="cart_button" >Remove from cart
+                <td><a href="{% url 'cart:course_description' pk=cart_item.course.id %}">{{cart_item.course.subject}}: {{cart_item.course.catalog_number}}</a></td>
+                <td>{{cart_item.course.units}}</td>
+                <td>{{cart_item.course.instructor_name}}</td>
+                <td>
+                    <a href="{{cart_item.course.get_remove_from_cart_url}}" class="btn btn-primary btn-md my-0 p" >Remove from cart
                     </a>
     
-                </th>
+                </td>
             </tr>
     
             {% empty %}
             <tr>
-                <td colspan="5">No classes in your cart</td>
+                <td colspan="5">Your Cart is Empty</td>
             </tr>
     
              <tr>
@@ -70,8 +70,7 @@
             {% endif %}
             
             </tbody>
-        </table>    
-        <a href="{{object.get_create_schedule_url}}" class="button" >Create Schedule</a>
+        </table>
     
             </div>
         </div>

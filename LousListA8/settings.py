@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'cart',
     'friends', # Will be replaced by 'friendship' for Sprint 6
     # 'friendship', # I am going to switch over to this for Sprint 6
-    'schedule',
     'bootstrap5',
     'allauth',
     'allauth.account',
@@ -171,7 +170,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 7
+SITE_ID = 6
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
