@@ -2,10 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.utils import timezone
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView, View
+from schedule.models import Schedule, Comment
 import numpy as np
 import pandas as pd
 import requests
@@ -80,6 +82,29 @@ def remove_from_cart(request, pk):
         messages.info(request, "You do not have a cart")
         return redirect("cart:course_description", pk = pk)
 
+@login_required
+def create_schedule(request):
+    Schedule.objects.filter(user=request.user).delete()
+    cart = Cart.objects.filter(
+        user=request.user, 
+    )
+    schedule, created = Schedule.objects.get_or_create(
+        user = request.user,
+        pub_date = timezone.now()
+    )
+    cart_qs = Cart.objects.filter(user=request.user)
+    cart = cart_qs[0]
+    if cart.courses.count != 0:            
+        for course in cart.courses.all():
+            schedule.courses.add(course.course)
+        
+        print("CREATED SCHEDULE: ")
+        messages.info(request, "Schedule created")
+        return redirect("schedule:schedule-summary")
+    else:
+        print("NO COURSES TO SCHEDULE")
+        messages.info(request, "Cannot create schedule without courses")
+    
 class SearchResultsView(ListView):
     model = Course
     template_name = "course.html"

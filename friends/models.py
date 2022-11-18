@@ -9,7 +9,7 @@ class FriendList(models.Model):
     ''' ManyToMany = many users can be on the same FriendList and many FriendLists can have the same user
         blank = user can have no friends '''
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
-
+    schedules = models.ManyToManyField
     # Python refers to toString as __str__
     def __str__(self):
         return (self.user.username + '\'s friend list')
