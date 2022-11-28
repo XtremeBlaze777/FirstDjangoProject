@@ -1,16 +1,14 @@
 # Google OAuth setup for new heroku deployment
-1) Before deployment run:
-    - `python3 manage.py makemigrations`
-    - `python3 manage.py migrate`
-2) Reset your heroku database by going to *addons->postgres ->settings->reset database*
-7) Add the url of your heroku deployment to the *ALLOWED_HOSTS* variable in *settings.py*
-3) Run a bash shell on your heroku deployment (either using the Heroku CLI or from the Heroku Website)
-4) Create an admin account using `python3 manage.py createsuperuser`
-5) Login to your admin from the */admin* url of your deployment
-6) Do Step 5 of https://www.section.io/engineering-education/django-google-oauth/ to set up google OAuth like normal:
+1) Locally, run `python3 manage.py makemigrations`
+2) On heroku bash, run the Site ID script with `chmod +x set_siteID.sh && ./set_siteID.sh`; add the printed SITE_ID in *LousListA8/settings.py*
+3) Add the url of your heroku deployment to the *ALLOWED_HOSTS* variable in *LousListA8/settings.py*
+4) Push to github/heroku
+5) Reset your heroku database by going to *addons->postgres ->settings->reset database*
+6) On heroku bash, create an admin account using `python3 manage.py createsuperuser`
+7) Login to your admin from the */admin* url of your deployment
+8) Do Step 5 of https://www.section.io/engineering-education/django-google-oauth/ to set up google OAuth like normal:
     - Go to the social sites section and make sure the only url is the current heroku deployment.
     - Go to the social apps section and add an app that has Google as the provider, and get the rest of the fields from our google developer console
-8) On heroku bash, run the Site ID script with `chmod +x set_siteID.sh && ./set_siteID.sh`.
 9) Add the url (and callback url) of your heroku deployment to the Google Developer Console
 10) On heroku bash run `python3 manage.py seed`
 

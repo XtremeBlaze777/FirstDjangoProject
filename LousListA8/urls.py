@@ -23,7 +23,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('', include('home.urls')),
     path('', include('cart.urls')),
-    path('', include('schedule.urls')),
     path('friends/', include('friends.urls')),
     path('about/', TemplateView.as_view(template_name="about.html")),
     path('admin/', admin.site.urls),
