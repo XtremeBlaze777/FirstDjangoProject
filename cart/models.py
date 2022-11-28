@@ -14,6 +14,9 @@ class Cart(models.Model):
 
     def __str__(self):
         return str(self.user.username) 
+    
+    def get_create_schedule_url(self) :
+        return reverse("cart:create-schedule")
 
 class Department(models.Model):
     deptJson = models.JSONField(default=dict)
