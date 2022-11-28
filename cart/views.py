@@ -58,7 +58,7 @@ def add_to_cart(request, pk) :
 def remove_from_cart(request, pk):
     course = get_object_or_404(Course, pk=pk )
     cart_qs = Cart.objects.filter(
-        user=request.user, 
+        user=request.user,
     )
     if cart_qs.exists():
         cart = cart_qs[0]
@@ -80,11 +80,34 @@ def remove_from_cart(request, pk):
         messages.info(request, "You do not have a cart")
         return redirect("cart:course_description", pk = pk)
 
+@login_required
+def create_schedule(request):
+    Schedule.objects.filter(user=request.user).delete()
+    cart = Cart.objects.filter(
+        user=request.user,
+    )
+    schedule, created = Schedule.objects.get_or_create(
+        user = request.user,
+        pub_date = timezone.now()
+    )
+    cart_qs = Cart.objects.filter(user=request.user)
+    cart = cart_qs[0]
+    if cart.courses.count != 0:
+        for course in cart.courses.all():
+            schedule.courses.add(course.course)
+
+        print("CREATED SCHEDULE: ")
+        messages.info(request, "Schedule created")
+        return redirect("schedule:schedule_view")
+    else:
+        print("NO COURSES TO SCHEDULE")
+        messages.info(request, "Cannot create schedule without courses")
+
 class SearchResultsView(ListView):
     model = Course
     template_name = "course.html"
 
-    def get_queryset(self):  
+    def get_queryset(self):
         query = self.request.GET.get("q")
         object_list = Course.objects.filter(
             Q(subject__icontains=query)
