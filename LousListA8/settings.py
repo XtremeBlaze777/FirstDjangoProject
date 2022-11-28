@@ -36,8 +36,7 @@ ALLOWED_HOSTS = [PROD_HOST, *STAGING_HOSTS, *LOCAL_HOST]
 INSTALLED_APPS = [
     'home',
     'cart',
-    'friends', # Will be replaced by 'friendship' for Sprint 6
-    # 'friendship', # I am going to switch over to this for Sprint 6
+    'friends',
     'schedule',
     'bootstrap5',
     'allauth',
@@ -171,7 +170,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 8
+SITE_ID = 6
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
