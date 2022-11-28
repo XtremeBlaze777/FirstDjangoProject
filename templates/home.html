@@ -2,9 +2,13 @@
 
 {% block content %}
 <div class="center">
-	<h4>Please enter a course subject!</h4>
+	<h4>Please enter a course mnemonic!</h4>
 	<form action="{% url 'cart:search_results' %}" method="get">
-		<input name="q" type="text" placeholder="Enter the Course Subject">
+		<div>		
+			<input name="q" type="text" placeholder="Enter the Course Mnemonic">
+		</div>
+		<button type="submit" class="button">Submit</button>
+
 	</form>
 </div>
 {% endblock %}

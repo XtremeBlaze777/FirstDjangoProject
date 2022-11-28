@@ -18,12 +18,62 @@
       background-color: #ffffff;
 
     }
+
+    .nav.navbar-nav li a {
+      color: #232D4B;
+    }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {
         background-color: #ccc9c4;
+        color: #232D4B;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 8px 13px;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #232D4B;
+        background-color: #E57200;
+        border: none;
+        border-radius: 9px;
+        box-shadow: 0 4px #999;
+    }
+
+.button:hover {background-color: #e57200d4}
+
+    .button:active {
+      background-color: #e57200d4;
+      box-shadow: 0 3px #ccc9c4;
+      transform: translateY(4px);
     }
     
+    .cart_button {
+        display: inline-block;
+        padding: 8px 13px;
+        font-size: 12px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #E57200;
+        background-color: #232D4B;
+        border: none;
+        border-radius: 9px;
+        box-shadow: 0 4px #999;
+    }
+
+.cart_button:hover {background-color: #232D4Bd4}
+
+    .cart_button:active {
+      background-color: #232D4Bd4;
+      box-shadow: 0 3px #ccc9c4;
+      transform: translateY(4px);
+    }
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
@@ -32,8 +82,8 @@
     }
 
     .title{
-        background-color: #d49021;
-        color:blue;
+        background-color:  #E57200;
+        color: #232D4B;
     }
     
     /* Set black background color, white text and some padding */
@@ -69,8 +119,9 @@
         <li>{% load static %} <img src="{% static "images/uva_logo.png" %}" alt="home" height="50px"  /></li>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/friends">Friends</a></li>
+        <li><a href="/friends"><span class="glyphicon glyphicon-user"></span>Friends</a></li>
         <li><a href="/cart-summary"><span class="glyphicon glyphicon-shopping-cart">Cart</a></li>
+        <li><a href="/schedule-summary"><span class="glyphicon glyphicon-list">Schedule</a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
