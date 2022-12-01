@@ -21,7 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=!r@r0%o-c5msp37#&^u)c##6v0g6^ss@gjnr_+m+ro@w^7a@3'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Enable HSTS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_PRELOAD = True
+
+# Redirect HTTP to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Idk django told me to do it
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Set debug mode to false if deployed on heroku
 DEBUG = 'DYNO' not in os.environ
