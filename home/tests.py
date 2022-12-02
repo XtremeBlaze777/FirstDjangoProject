@@ -7,28 +7,28 @@ import requests
 #setup test cases
 class setUpTestCase(TestCase):
     def test_user_not_logged_in(self):
-        response = self.client.get('/polls', follow=True)
-        self.assertEqual(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertEqual(response.redirect_chain[0][0], "https://testserver/about")
     
     def unauth_user_logged_in(self):
         c = Client()
         User.objects.create_user(username='stream', password='lg')
         c.login(username='stream', password='lg')
-        response = self.client.get('/polls', follow=True)
-        self.assertTrue(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertTrue(response.redirect_chain[0][0], "/about/")
 
     def test_drop_down_course_selection(self):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
-        response = self.client.get('/polls', follow=True)
-        self.assertTrue(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertTrue(response.redirect_chain[0][0], "/about/")
         
 #Google login test
 class googleLoginTestCase(TestCase):
     def test_user_not_logged_in(self):
-        response = self.client.get('/polls', follow=True)
-        self.assertEqual(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertEqual(response.redirect_chain[0][0], "https://testserver/about")
         
 #Unauthorized login
 class unauthLoginTestCase(TestCase):
@@ -37,7 +37,7 @@ class unauthLoginTestCase(TestCase):
         User.objects.create_user(username='stream', password='lg')
         c.login(username='stream', password='lg')
         response = self.client.get('/profiles', follow=True)
-        self.assertTrue(response.redirect_chain[0][0], "/polls/")
+        self.assertTrue(response.redirect_chain[0][0], "/about/")
 
 #Unauthorized login 2
 class unauthLoginTestCaseTwo(TestCase):
@@ -54,7 +54,7 @@ class dropdownMenuTestCase(TestCase):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
-        response = self.client.get('/polls', follow=True)
+        response = self.client.get('/about', follow=True)
         self.assertFalse(response.redirect_chain[0][0], "/services/")
 
 #classesByDept

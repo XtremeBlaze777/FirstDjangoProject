@@ -20,7 +20,6 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
     path('', include('home.urls')),
     path('', include('cart.urls')),
     path('', include('schedule.urls')),
