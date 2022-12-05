@@ -110,11 +110,38 @@ class SearchResultsView(ListView):
     template_name = "course.html"
 
     def get_queryset(self):  
-        query = self.request.GET.get("q")
-        object_list = Course.objects.filter(
-            Q(subject__icontains=query)
-        )
-        return object_list
+        if 'q' in self.request.GET:
+            query = self.request.GET.get("q")
+            object_list = Course.objects.filter(
+                Q(subject__icontains=query)
+            )
+            return object_list
+        if 't' in self.request.GET:
+            query = self.request.GET.get("t")
+            object_list = Course.objects.filter(
+                Q(instructor_name__icontains=query)
+            )
+            return object_list
+        if 'u' in self.request.GET:
+            print("test")
+            query = self.request.GET.get("u")
+            courseSubject  = query.rstrip('0123456789')
+            print(courseSubject)
+            courseCode = query[len(courseSubject):]
+            print(courseCode)
+            object_list = Course.objects.filter(
+                Q(subject__icontains=courseSubject)
+            )
+            object_list = object_list.filter(
+                Q(catalog_number__icontains=courseCode)
+            )
+            return object_list
+        if 'v' in self.request.GET:
+            query = self.request.GET.get("v")
+            object_list = Course.objects.filter(
+                Q(course_number__icontains=query)
+            )
+            return object_list
 
 class CourseDescriptionView(DetailView):
     model = Course
