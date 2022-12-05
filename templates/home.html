@@ -2,10 +2,36 @@
 
 {% block content %}
 <div class="center">
-	<h4>Please enter a course mnemonic!</h4>
+	<h4>Please enter a course subject!</h4>
 	<form action="{% url 'cart:search_results' %}" method="get">
 		<div>		
-			<input name="q" type="text" placeholder="Enter the Course Mnemonic">
+			<input name="q" type="text" placeholder="Enter here (Ex: CS)">
+		</div>
+		<button type="submit" class="button">Submit</button>
+
+	</form>
+	<h4>Please enter a Professor's names!</h4>
+	<form action="{% url 'cart:search_results' %}" method="get">
+		<div>		
+			<input name="t" type="text" placeholder="Enter here (Ex: Levy)">
+		</div>
+		<button type="submit" class="button">Submit</button>
+
+	</form>
+	</form>
+	<h4>Please enter a Course Code!</h4>
+	<form action="{% url 'cart:search_results' %}" method="get">
+		<div>		
+			<input name="u" type="text" placeholder="Enter here (Ex: CS3240)">
+		</div>
+		<button type="submit" class="button">Submit</button>
+
+	</form>
+	</form>
+	<h4>Please enter a Course Name!</h4>
+	<form action="{% url 'cart:search_results' %}" method="get">
+		<div>		
+			<input name="v" type="text" placeholder="Enter here (Ex: Statistics)">
 		</div>
 		<button type="submit" class="button">Submit</button>
 
