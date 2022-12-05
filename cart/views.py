@@ -123,12 +123,9 @@ class SearchResultsView(ListView):
             )
             return object_list
         if 'u' in self.request.GET:
-            print("test")
             query = self.request.GET.get("u")
             courseSubject  = query.rstrip('0123456789')
-            print(courseSubject)
             courseCode = query[len(courseSubject):]
-            print(courseCode)
             object_list = Course.objects.filter(
                 Q(subject__icontains=courseSubject)
             )
