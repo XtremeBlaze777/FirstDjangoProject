@@ -106,4 +106,9 @@ def SearchResults(request):
         except ValueError:
             pass
 
+    # Staff accounts must be explicitly searched for
+    for user in object_list:
+        if user.is_staff:
+            object_list.remove(user)
+
     return render(request, 'user_search.html', { 'object_list' : object_list })
