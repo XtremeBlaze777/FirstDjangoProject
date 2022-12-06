@@ -37,7 +37,6 @@ def schedule_view(request):
                 user_comment = comment_form.save(commit=False)
                 user_comment.schedule = schedule
                 user_comment.save()
-                #return HttpResponseRedirect("/")
         else:
             comment_form = NewCommentForm()
         return render(
@@ -47,7 +46,7 @@ def schedule_view(request):
                 'comments' : comments, 
                 'comment_form' : comment_form},)
     except ObjectDoesNotExist:
-        messages.error(request, "Schedule is not available")
+        messages.error(request, "Schedule must be created from cart")
         return redirect("/")
 
 def friend_schedule_view(request, user_id):
@@ -61,7 +60,6 @@ def friend_schedule_view(request, user_id):
                 user_comment = comment_form.save(commit=False)
                 user_comment.schedule = schedule
                 user_comment.save()
-                #return HttpResponseRedirect("/")
         else:
             comment_form = NewCommentForm()
         return render(

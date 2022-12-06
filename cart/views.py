@@ -15,18 +15,19 @@ from .models import *
 
 # Create your views here.
 
-class CartView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
+@login_required
+def CartView(request):
+    cart = None
+    context = {}
 
-        try:
-            cart = Cart.objects.get(user=self.request.user)
-            context = {
-                'object' : cart
-            }
-            return render(self.request, 'cart.html', context)
-        except ObjectDoesNotExist:
-            messages.error(self.request, "You do not have a cart")
-            return redirect("/")
+    try:
+        cart = Cart.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        cart = Cart.objects.create(user=request.user)
+        messages.info(request, "Created blank cart. Go add some courses!")
+
+    context['object'] = cart
+    return render(request, 'cart.html', context)
 
 @login_required
 def add_to_cart(request, pk) :
