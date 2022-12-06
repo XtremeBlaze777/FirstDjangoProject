@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'cart',
     'friends',
     'schedule',
+    'user_profile',
     'bootstrap5',
     'allauth',
     'allauth.account',

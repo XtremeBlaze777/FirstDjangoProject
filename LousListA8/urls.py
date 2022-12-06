@@ -30,6 +30,6 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name="login.html")),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
-    path('profile/', TemplateView.as_view(template_name="profile.html")),
+    path('profile/', include('user_profile.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()

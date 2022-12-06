@@ -2,23 +2,28 @@
 
 {% block content %}
 
+<h1>Hello {{curUser.username}}!</h1>
+
+<br>
 <form action="{% url 'cart:cart-summary' %}" method="get">
     {% csrf_token %}
     <input type="submit" value="Your Cart" />
 </form>
+<br>
 
 <form action="{% url 'schedule:schedule_view' %}" method="get">
     {% csrf_token %}
     <input type="submit" value="Your Current Schedule" />
 </form>
+<br><br>
 
-<!-- <font size="+2"><u>Your Friends</u></font> <br>
+<font size="+2"><u>Your Friends</u></font> <br>
     {% for user in object_list %}
         <font size="+1">{{user.username}}</font> <br>
         <font><a href="{% url 'schedule:friend_schedule_view' user.id %}">View Schedule</a></font>
-        <br>
+        <br><br>
     {% empty %}
         Need to be friended...
-    {% endfor %} -->
+    {% endfor %}
 
 {% endblock %}
