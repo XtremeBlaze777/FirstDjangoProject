@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h2>{{schedule.user.username}}'s: Schedule</h2>
+    <h2>{{schedule.user.username | capfirst}}'s Schedule:</h2>
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -22,21 +22,21 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Item Name</th>
+                <th scope="col">Course</th>
                 <th scope="col">Units</th>
                 <th scope="col">Instructor</th>
                 <th scope="col">Days</th>
+                <th scope="col">Time</th>
             </tr>
             </thead>
             <tbody>
             {% for course in schedule.courses.all %}
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
                 <th><a href="{% url 'cart:course_description' pk=course.id %}">{{course.subject}}: {{course.catalog_number}}</a></th>
                 <th>{{course.units}}</th>
                 <th><a href="mailto:{{course.course.instructor_email}}">{{course.instructor_name}}</a></th>
                 <th>{{course.days}}</th>
+                <th>{{course.start_time}} - {{course.end_time}}</th>
             </tr>
     
             {% empty %}

@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<br>
+{% if messages %}
+<ul class="messages">
+	{% for message in messages %}
+		<p style="color:blue;"{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<div class="subtitle">
+	<h3><u>Add some classes to your cart so you can build a schedule!</u></h3> <br>
+</div>
+
 <div class="center">
 	<h4>Please enter a course subject!</h4>
 	<form action="{% url 'cart:search_results' %}" method="get">
@@ -37,4 +51,6 @@
 
 	</form>
 </div>
+<br>
+
 {% endblock %}

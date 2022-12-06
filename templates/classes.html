@@ -1,28 +1,16 @@
 {% extends 'base.html' %}
 	
-    {% block content %}
-    <form action="../">
-        <input type="submit" value="Go back to class search" class="btn btn-link" />
-    </form method="POST">
-    <div align="left">
-    <div class="btn-group-vertical">
-	<form method="POST">
-    {% for x,y in Info%}
-
-
-
-    		{% csrf_token %}
-    <div class="col-md-12 mb-1">
-            
-    <button type="submit" name="class" value={{y}}>See Class</button> <nobr>
-             <p style="display:inline"> {{x}} </p>            
-    </div>  
-
-    {% endfor %}
-    </form>
+{% block content %}
+    <div align="left" class="btn-group-vertical">
+        <form method="POST">
+            {% csrf_token %}
+            {% for x,y in Info%}
+                <div class="col-md-12 mb-1">
+                    <button type="submit" name="class" value={{y}}>See Class</button> <nobr>
+                    <p style="display:inline"> {{x}} </p>            
+                </div>
+            {% endfor %}
+        </form>
     </div>
-    </div>
-
-
-	{% endblock content %}
-
+    <br>
+{% endblock content %}

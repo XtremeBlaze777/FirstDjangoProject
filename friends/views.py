@@ -69,9 +69,20 @@ def index(request):
 @login_required
 def SearchResults(request):
     curUser = User.objects.get(username=request.user)
+    object_list = []
 
-    object_list = list(User.objects.all())
-    object_list.remove(curUser)
+    query = request.GET.get("q")
+    query_results = User.objects.filter(
+        Q(username__icontains=query)
+    )
+
+    for result in query_results:
+        object_list.append(result)
+
+    try:
+        object_list.remove(curUser)
+    except ValueError:
+        pass
 
     # Exclude anyone who is already a friend
     list_of_friend_list = FriendList.objects.filter(user=curUser)
@@ -105,5 +116,11 @@ def SearchResults(request):
             object_list.remove(req.receiver)
         except ValueError:
             pass
+
+    # Staff accounts must be explicitly searched for
+    if query == "":
+        for user in object_list:
+            if user.is_staff:
+                object_list.remove(user)
 
     return render(request, 'user_search.html', { 'object_list' : object_list })

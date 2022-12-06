@@ -3,25 +3,28 @@
     {% block content %}
      <font size="+2">{{object.description}} <br> Section: {{object.course_section}} </font>
 
- <div align="left">
+ <div align="center">
     <div class="btn-group-vertical">
 	<form method="POST">
-
+<hr>
     {{Info}}
-    <p> Instructor Name: {{object.instructor_name}} <br> 
-    Instructor Email: {{object.instructor_email}} <br>
-    Course Number: {{object.course_number}} <br>
-    Wait List Spots Taken: {{object.wait_list}} <br>
-    Wait List Spots Capacity: {{object.wait_cap}} <br>
-    Course capacity: {{object.class_capacity}} <br>
-    Course Slots Taken: {{object.enrollment_total}} <br>
-    Course Slots Available: {{object.enrollment_available}} <br>    
-    Meeting Day(s): {{object.days}} <br>
-    Start Time: {{object.start_time}} <br>
-    End Time: {{object.end_time}} <br>
-    Location: {{object.facility_description}} <br> 
-    </p>
-    <a href="{{object.get_add_to_cart_url}}" class="btn btn-primary btn-md my-0 p" >Add to cart
+    <p style="text-align: left; color:#232D4B; font-size: 1.1em">
+    Instructor Name: &nbsp;&nbsp;{{object.instructor_name}} <br> 
+    Instructor Email: &nbsp;&nbsp;{{object.instructor_email}} <br>
+    Course Number: &nbsp;&nbsp;{{object.course_number}} <br>
+    Wait List Spots Taken: &nbsp;&nbsp;{{object.wait_list}} <br>
+    Wait List Spots Capacity:&nbsp;&nbsp; {{object.wait_cap}} <br>
+    Course capacity: &nbsp;&nbsp;{{object.class_capacity}} <br>
+    Course Slots Taken: &nbsp;&nbsp;{{object.enrollment_total}} <br>
+    Course Slots Available: &nbsp;&nbsp;{{object.enrollment_available}} <br>    
+    Meeting Day(s): &nbsp;&nbsp;{{object.days}} <br>
+    Start Time: &nbsp;&nbsp;{{object.start_time}} <br>
+    End Time: &nbsp;&nbsp;{{object.end_time}} <br>
+    Location: &nbsp;&nbsp;{{object.facility_description}} <br> 
+</p>
+    <a href="https://thecourseforum.com/course/{{object.subject}}/{{object.catalog_number}}/" class="btn btn-primary btn-md my-0 p">Course Forum</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{{object.get_add_to_cart_url}}" class="cart_button" >Add to cart
     </a>
     </div>  
 
@@ -29,4 +32,5 @@
     </div>
     </div>
 
+    <br>
 	{% endblock content %}
