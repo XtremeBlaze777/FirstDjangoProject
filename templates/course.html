@@ -2,13 +2,14 @@
 	
     {% block content %}
     {% for course in object_list %}
+     <hr>
      <font size="+2">{{course.subject}}: {{course.catalog_number}}</font> <br>
      <font size="+1">{{course.description}} </font> <br>
      {{course.units}} Credits
      <br>
      <br>
 
- <div align="left">
+ <div align="center">
     <div class="btn-group-vertical">
 	<form method="POST">
 
@@ -20,7 +21,6 @@
              <p style="display:inline"> Component: {{course.component}} &nbsp&nbsp&nbsp Instructor: {{course.instructor_name}} &nbsp&nbsp&nbsp Spots Available: {{course.enrollment_available}} &nbsp&nbsp&nbsp Day: {{course.days}} </p>            
     </div>  
     </form>
-
     </div>
     </div>
     
