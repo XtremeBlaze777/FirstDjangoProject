@@ -10,8 +10,8 @@ class accountTest(TestCase):
     # To check if the login page redirects users to the home page if they're not logged in
     # Expected result: No redirect occurs
     def test_user_not_logged_in(self):
-        response = self.client.get('/polls', follow=True)
-        self.assertEqual(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertEqual(response.redirect_chain[0][0], "/about/")
     
     # To check if the login redirects logged in users to the home page
     # Expected result: The login page redirects logged in users to the home page
@@ -19,8 +19,8 @@ class accountTest(TestCase):
         c = Client()
         User.objects.create_user(username='admin', password='admin')
         c.login(username='admin', password='admin')
-        response = self.client.get('/polls', follow=True)
-        self.assertTrue(response.redirect_chain[0][0], "/polls/")
+        response = self.client.get('/about', follow=True)
+        self.assertTrue(response.redirect_chain[0][0], "/about/")
 
 class CartTest(TestCase):
 
