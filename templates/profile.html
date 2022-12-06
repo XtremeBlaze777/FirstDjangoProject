@@ -1,1 +1,24 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{% url 'cart:cart-summary' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Your Cart" />
+</form>
+
+<form action="{% url 'schedule:schedule_view' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Your Current Schedule" />
+</form>
+
+<!-- <font size="+2"><u>Your Friends</u></font> <br>
+    {% for user in object_list %}
+        <font size="+1">{{user.username}}</font> <br>
+        <font><a href="{% url 'schedule:friend_schedule_view' user.id %}">View Schedule</a></font>
+        <br>
+    {% empty %}
+        Need to be friended...
+    {% endfor %} -->
+
+{% endblock %}
