@@ -13,12 +13,9 @@ from .forms import *
 # Create your views here.
 class ScheduleView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-
         try:
             schedule = Schedule.objects.get(user=self.request.user)
-            context = {
-                'object' : schedule
-            }
+            context = { 'object' : schedule }
             return render(self.request, 'schedule.html', context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have a schedule")
@@ -71,6 +68,3 @@ def friend_schedule_view(request, user_id):
     except ObjectDoesNotExist:
         messages.error(request, "Friend's schedule is not available")
         return redirect("/")
-
-    
-    
