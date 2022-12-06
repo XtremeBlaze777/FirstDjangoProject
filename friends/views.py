@@ -71,7 +71,6 @@ def SearchResults(request):
     curUser = User.objects.get(username=request.user)
 
     object_list = list(User.objects.all())
-    print(object_list)
     object_list.remove(curUser)
 
     # Exclude anyone who is already a friend

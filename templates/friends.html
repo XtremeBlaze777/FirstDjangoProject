@@ -20,9 +20,8 @@
 	<div class="center">
 		<h2>Your friends:</h2>
 		{% for user in friends %}
-			<font size="+1" value="{{friend_name}}">{{user.username}}</font><br>
+			<font size="+1" value="{{friend_name}}">{{user.username | capfirst}}</font><br>
 			<font >{{user.email}} </font> <br>
-			<font><a href="{% url 'schedule:friend_schedule_view' user.id %}">View Schedule</a></font>
 			<form action="{% url 'friends:friendsHome' %}" method="post">
 				{% csrf_token %}
 				<input type="submit" value="Remove Friend..." />
@@ -41,7 +40,7 @@
 	<div class="center">
 		<h2>Pending requests:</h2>
 		{% for user in received %}
-			<font size="+1">{{user.username}}</font> <br>
+			<font size="+1">{{user.username | capfirst}}</font> <br>
 			<font >{{user.email}} </font> <br>
 			<form action="{% url 'friends:friendsHome' %}" method="post">
 				{% csrf_token %}
@@ -67,7 +66,7 @@
 	<div class="center">
 		<h2>Sent requests:</h2>
 		{% for user in sent %}
-			<font size="+1">{{user.username}}</font> <br>
+			<font size="+1">{{user.username | capfirst}}</font> <br>
 			<font >{{user.email}} </font> <br>
 			<form action="{% url 'friends:friendsHome' %}" method="post">
 				{% csrf_token %}

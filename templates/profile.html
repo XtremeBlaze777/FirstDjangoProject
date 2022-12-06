@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Hello {{curUser.username}}!</h1>
+<h1>Hello {{curUser.username | capfirst}}!</h1>
 
 <br>
 <form action="{% url 'cart:cart-summary' %}" method="get">
