@@ -136,7 +136,7 @@ class SearchResultsView(ListView):
         if 'v' in self.request.GET:
             query = self.request.GET.get("v")
             object_list = Course.objects.filter(
-                Q(course_number__icontains=query)
+                Q(description__icontains=query)
             )
             return object_list
 
