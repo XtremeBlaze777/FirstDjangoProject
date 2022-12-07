@@ -25,25 +25,25 @@ def index(request):
             brother = FriendRequest.objects.get(receiver=curUser, sender=receiver, is_pending=True)
             brother.accept_request()
             brother.save()
-            context['top_text'] = "Added " + str(receiver) + " as a friend!"
+            context['top_text'] = "Added " + str(receiver).capitalize() + " as a friend!"
 
         elif src == "cancel":
             no_brother = FriendRequest.objects.get(sender=curUser, receiver=receiver, is_pending=True)
             no_brother.cancel_request()
             no_brother.save()
-            context['top_text'] = "Cancelled friend request to " + str(receiver)
+            context['top_text'] = "Cancelled friend request to " + str(receiver).capitalize()
 
         elif src == "reject":
             no_brother = FriendRequest.objects.get(receiver=curUser, sender=receiver, is_pending=True)
             no_brother.reject_request()
             no_brother.save()
-            context['top_text'] = "Rejected friend request from " + str(receiver)
+            context['top_text'] = "Rejected friend request from " + str(receiver).capitalize()
 
         elif src == "remove":
             myList = FriendList.objects.get(user=curUser)
             myList.remove_friend(traitor=receiver)
             myList.save()
-            context['top_text'] = "Removed " + str(receiver) + " as a friend..."
+            context['top_text'] = "Removed " + str(receiver).capitalize() + " as a friend..."
 
     try:
         context['friends'] = list(FriendList.objects.filter(user=curUser)[0].friends.all())

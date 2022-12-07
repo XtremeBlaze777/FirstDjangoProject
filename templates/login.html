@@ -3,7 +3,7 @@
 <body>
 <h1>A-08 Lou's List Login Page </h1>
 {% if user.is_authenticated %} <!--NEVER REACHES THIS WITH LOGOUT BUTTON-->
-  <p>Welcome, You are logged in as {{ user.username }}</p>
+  <p>Welcome, You are logged in as {{ user.username | capfirst }}</p>
   <form action="./home">
     <input type="submit" value="Go to Home Page" />
   </form>

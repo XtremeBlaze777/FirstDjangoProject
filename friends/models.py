@@ -12,7 +12,7 @@ class FriendList(models.Model):
     schedules = models.ManyToManyField
     # Python refers to toString as __str__
     def __str__(self):
-        return (self.user.username + '\'s friend list')
+        return (self.user.username.capitalize() + '\'s friend list')
 
     # params: self is a FriendList, while target is a Django User
     def add_friend(self, target):
@@ -44,7 +44,7 @@ class FriendRequest(models.Model):
     is_pending = models.BooleanField(default=True, blank=True, null=False)
 
     def __str__(self):
-        return ('Sent a friend request to ' + self.receiver.username)
+        return ('Sent a friend request to ' + self.receiver.username.capitalize())
 
     def accept_request(self):
         sender_FL = None
